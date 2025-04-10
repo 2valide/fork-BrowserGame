@@ -51,6 +51,15 @@ Then go inside the Client folder and open index.html.
 
 You might want to host a webserver and open index.html in that (e.g. 127.0.0.1/index.html).
 
+With docker
+-----------
+
+```
+docker-compose up
+```
+
+and go on localhost:5500
+
 Also read the original README files you'll find inside the Client and Server folders to learn the basics of configuring (it's preconfigured right now).
 
 
@@ -64,17 +73,8 @@ Documentation
 
 Documentation is located in client and server directories.
 
-
-License
+Groupe Project
 -------
+Anthony
 
-Code is licensed under MPL 2.0. Content is licensed under CC-BY-SA 3.0.
-See the LICENSE file for details.
-
-
-Credits
--------
-Created by [Little Workshop](http://www.littleworkshop.fr):
-
-* Franck Lecollinet - [@whatthefranck](http://twitter.com/whatthefranck)
-* Guillaume Lecollinet - [@glecollinet](http://twitter.com/glecollinet)
+Florian
