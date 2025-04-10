@@ -27,14 +27,14 @@ function main(config) {
     
     switch(config.debug_level) {
         case "error":
-            log = new Log(Log.ERROR); break;
+            log = new Log(console.log); break;
         case "debug":
-            log = new Log(Log.DEBUG); break;
+            log = new Log(console.log); break;
         case "info":
-            log = new Log(Log.INFO); break;
+            log = new Log(console.log); break;
     };
     
-    log.info("Starting BrowserQuest game server...");
+    console.log("Starting BrowserQuest game server...");
     
     server.onConnect(function(connection) {
         var world, // the one in which the player will be spawned
@@ -62,7 +62,7 @@ function main(config) {
     });
 
     server.onError(function() {
-        log.error(Array.prototype.join.call(arguments, ", "));
+        console.log(Array.prototype.join.call(arguments, ", "));
     });
     
     var onPopulationChange = function() {
@@ -95,7 +95,7 @@ function main(config) {
     }
     
     process.on('uncaughtException', function (e) {
-        log.error('uncaughtException: ' + e);
+        console.log('uncaughtException: ' + e);
     });
 }
 

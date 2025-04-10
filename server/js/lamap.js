@@ -5,7 +5,7 @@ var cls = require('./lib/class')
     Utils = require('./utils'),
     Checkpoint = require('./checkpoint');
 
-module.exports = Map = cls.Class.extend({    
+module.exports = Lamap = cls.Class.extend({    
     init: function(filepath) {
     	var self = this;
     

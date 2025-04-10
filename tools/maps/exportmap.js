@@ -5,7 +5,7 @@ var util = require('util'),
     path = require("path"),
     fs = require("fs"),
     processMap = require('./processmap'),
-    log = new Log(Log.DEBUG);
+    log = new Log(console.log);
     
 var source = process.argv[2],
     destination = process.argv[3],
@@ -27,17 +27,17 @@ function main() {
         if(mode === "client") {
             // map in a .json file for ajax loading
             fs.writeFile(destination+".json", jsonMap, function(err, file) {
-                log.info("Finished processing map file: "+ destination + ".json was saved.");
+                console.log("Finished processing map file: "+ destination + ".json was saved.");
             });
             
             // map in a .js file for web worker loading
             jsonMap = "var mapData = "+JSON.stringify(map);
             fs.writeFile(destination+".js", jsonMap, function(err, file) {
-                log.info("Finished processing map file: "+ destination + ".js was saved.");
+                console.log("Finished processing map file: "+ destination + ".js was saved.");
             });
         } else {
             fs.writeFile(destination, jsonMap, function(err, file) {
-                log.info("Finished processing map file: "+ destination + " was saved.");
+                console.log("Finished processing map file: "+ destination + " was saved.");
             });
         }
     });
@@ -49,7 +49,7 @@ function getTiledJSONmap(filename, callback) {
     
     path.exists(filename, function(exists) {
         if(!exists) {  
-            log.error(filename + " doesn't exist.")
+            console.log(filename + " doesn't exist.")
             return;
         }
     

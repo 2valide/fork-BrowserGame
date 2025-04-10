@@ -49,9 +49,17 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 self = this;
 
              
-            this.connection = io(url, {'force new connection':true});
+            this.connection = io(url, {
+                'force new connection': true,
+                transports: ['websocket'],
+                upgrade: false,
+                withCredentials: true,
+                extraHeaders: {
+                    "Access-Control-Allow-Origin": "*"
+                }
+            });
             this.connection.on('connection', function(socket){
-                log.info("Connected to server " + url);
+                console.log("Connected to server " + url);
             });
 
             /******
@@ -93,11 +101,11 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 });
 
                 /*this.connection.onerror = function(e) {
-                    log.error(e, true);
+                    console.log(e, true);
                 };*/
 
                 this.connection.on("disconnect", function() {
-                    log.debug("Connection closed");
+                    console.log("Connection closed");
                     $('#container').addClass('error');
                     
                     if(self.disconnected_callback) {
@@ -121,7 +129,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
         
             if(this.isListening) {
        
-                log.debug("data: " + message);
+                console.log("data: " + message);
 
                 if(message instanceof Array) {
                     if(message[0] instanceof Array) {
@@ -141,7 +149,7 @@ define(['player', 'entityfactory', 'lib/bison'], function(Player, EntityFactory,
                 this.handlers[action].call(this, data);
             }
             else {
-                log.error("Unknown action : " + action);
+                console.log("Unknown action : " + action);
             }
         },
     
