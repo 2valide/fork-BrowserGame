@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: browserquest-server
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+  client:
+    image: nginx:alpine
+    container_name: browserquest-client
+    ports:
+      - "5500:80"
+    volumes:
+      - .:/usr/share/nginx/html
+    depends_on:
+      - server
+    restart: unless-stopped
