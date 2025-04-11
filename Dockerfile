@@ -8,6 +8,4 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8000
-
-CMD ["node", "server/js/main.js"]
+EXPOSE 8001 8002 8003 8004 8005
