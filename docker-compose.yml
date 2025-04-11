@@ -1,14 +1,86 @@
 services:
-  server:
+  nginx:
+    image: nginx:latest
+    container_name: browserquest-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+
+  server1:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: browserquest-server
+    container_name: browserquest-server1
     ports:
-      - "8000:8000"
+      - "8001:8001"
+    command: node server/js/main.js server/config_8001.json
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  server2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: browserquest-server2
+    ports:
+      - "8002:8002"
+    command: node server/js/main.js server/config_8002.json
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  server3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: browserquest-server3
+    ports:
+      - "8003:8003"
+    command: node server/js/main.js server/config_8003.json
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  server4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: browserquest-server4
+    ports:
+      - "8004:8004"
+    command: node server/js/main.js server/config_8004.json
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - nginx
+    restart: unless-stopped
+
+  server5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: browserquest-server5
+    ports:
+      - "8005:8005"
+    command: node server/js/main.js server/config_8005.json
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - nginx
     restart: unless-stopped
 
   client:
@@ -19,5 +91,5 @@ services:
     volumes:
       - .:/usr/share/nginx/html
     depends_on:
-      - server
+      - server1
     restart: unless-stopped
