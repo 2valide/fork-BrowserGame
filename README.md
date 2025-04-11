@@ -57,8 +57,6 @@ With docker
 -----------
 
 ```
-sudo nginx -c $(pwd)/nginx.conf
-
 docker-compose up
 ```
 
