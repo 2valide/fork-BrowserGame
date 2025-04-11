@@ -3,3 +3,4 @@ client-build
 build.txt
 .DS_Store
 *.swp
+fail2ban/data/db/
