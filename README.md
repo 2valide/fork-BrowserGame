@@ -43,6 +43,8 @@ HOW TO RUN?
 ============
 
 ```
+sudo nginx -c $(pwd)/nginx.conf
+
 npm install
 node server/js/main.js
 ```
@@ -55,10 +57,12 @@ With docker
 -----------
 
 ```
+sudo nginx -c $(pwd)/nginx.conf
+
 docker-compose up
 ```
 
-and go on localhost:5500
+and go on localhost:5500/client
 
 Also read the original README files you'll find inside the Client and Server folders to learn the basics of configuring (it's preconfigured right now).
 
